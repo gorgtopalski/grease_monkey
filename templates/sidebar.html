@@ -1,0 +1,114 @@
+{% url 'models:model-list' as models_url %}
+{% url 'models:production-list' as productions_url %}
+{% url 'models:production-job-change' as production_job_change_url %}
+{% url 'dashboard:shift-change' as shift_change_url %}
+{% url 'dashboard:home' as home_url %}
+<a href="{% url "dashboard:home" %}" class="btn btn-dark form-control">Grease Monkey</a>
+<hr/>
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a href="{{ home_url }}"
+           class="nav-link text-white {% if request.path == home_url %} active{% endif %}">
+            <i class="bi bi-layout-text-sidebar-reverse"></i>
+            Global
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ transport_url }}"
+           class="nav-link text-white {% if request.path == transport_url %} active{% endif %}">
+            <i class="bi bi-truck"></i>
+            Transporte
+        </a>
+    </li>
+    <li class="nav-item {% if request.path == home_url %} active{% endif %}">
+        <a href="#" class="nav-link text-white">
+            <i class="bi bi-droplet"></i>
+            Gotas
+        </a>
+    </li>
+    <li class="nav-item {% if request.path == home_url %} active{% endif %}">
+        <a href="#" class="nav-link text-white">
+            <i class="bi bi-thermometer-half"></i>
+            Temperaturas
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ productions_active_url }}"
+           class="nav-link text-white {% if request.path == productions_active_url %} active{% endif %}">
+            <i class="bi bi-speedometer"></i>
+            Presiones
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ productions_active_url }}"
+           class="nav-link text-white {% if request.path == productions_active_url %} active{% endif %}">
+            <i class="bi bi-robot"></i>
+            Robot de engrase
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ productions_active_url }}"
+           class="nav-link text-white {% if request.path == productions_active_url %} active{% endif %}">
+            <i class="bi bi-x-square"></i>
+            XPAR
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ productions_active_url }}"
+           class="nav-link text-white {% if request.path == productions_active_url %} active{% endif %}">
+            <i class="bi bi-arrow-clockwise"></i>
+            Rotación moldes
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ productions_active_url }}"
+           class="nav-link text-white {% if request.path == productions_active_url %} active{% endif %}">
+            <i class="bi bi-check2-square"></i>
+        Actuaciones</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ productions_active_url }}"
+           class="nav-link text-white {% if request.path == productions_active_url %} active{% endif %}">
+            <i class="bi bi-thermometer-snow"></i>
+        Tempertura moldes</a>
+    </li>
+    <hr/>
+    <li class="nav-item">
+        <a href="{{ shift_change_url }}"
+           class="nav-link text-white {% if request.path == shift_change_url %} active{% endif %}">
+            <i class="bi bi-people"></i>
+        Cambio turno</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ productions_all_url }}"
+           class="nav-link text-white {% if request.path == productions_all_url %} active{% endif %}">
+            <i class="bi bi-boxes"></i>
+        Generar parte</a>
+    </li>
+    <hr/>
+    <li class="nav-item">
+        <a href="{{ production_job_change_url }}"
+           class="nav-link text-white {% if request.path == production_job_change_url %} active{% endif %}">
+            <i class="bi bi-arrow-repeat"></i>
+        Cambio Fabricación</a>
+    </li>
+    <hr/>
+    <li class="nav-item">
+        <a href="{{ productions_url }}"
+           class="nav-link text-white {% if request.path == productions_url %} active{% endif %}">
+            <i class="bi bi-boxes"></i>
+        Producciones</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ models_url }}"
+           class="nav-link text-white {% if request.path == models_url %} active{% endif %}">
+            <i class="bi bi-folder"></i>
+        Modelos</a>
+    </li>
+    <li class="nav-item">
+        <a href="/admin"
+           class="nav-link text-white {% if request.path == admin_site_url %} active{% endif %}">
+            <i class="bi bi-folder"></i>
+        Admin</a>
+    </li>
+</ul>

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load line_colors %}
+{% load utils %}
+{% block content %}
+    <div class="d-flex flex-row justify-content-start">
+        <div class="col-auto p-1">
+            <div class="input-group">
+                <div class="input-group-text">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <input type="text"
+                       class="form-control"
+                       disabled
+                       value="{{ data|get_value_from_dict:'specialist_vc1' }}"/>
+            </div>
+        </div>
+        <div class="col-auto p-1">
+            <div class="input-group">
+                <div class="input-group-text">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <input type="text"
+                       class="form-control"
+                       disabled
+                       value="{{ data|get_value_from_dict:'specialist_vc2' }}"/>
+            </div>
+        </div>
+        <div class="col-2 p-1">
+            <div class="input-group">
+                <div class="input-group-text">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+                <input type="text"
+                       class="form-control"
+                       disabled
+                       value="{{ data|get_value_from_dict:'shift' }}"/>
+            </div>
+        </div>
+        <div class="col-1 p-1">
+            <div class="input-group">
+                <div class="input-group-text">
+                    <i class="bi bi-people"></i>
+                </div>
+                <input type="text"
+                       class="form-control"
+                       disabled
+                       value="{{ data|get_value_from_dict:'team' }}"/>
+            </div>
+        </div>
+        <div class="col-2 p-1">
+            <div class="input-group">
+                <div class="input-group-text">
+                    <i class="bi bi-calendar3"></i>
+                </div>
+                <input type="text"
+                       class="form-control"
+                       disabled
+                       value="{{ data|get_value_from_dict:'date' }}"/>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="d-flex flex-row justify-content-evenly">
+        {% for production in object_list %}
+            <div class="card m-1">
+                <div class="card-header text-nowrap text-white {{ production.line|line_color }}">
+                    <h5>{{ production.line }}: {{ production.model.name }}</h5>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">
+                        With supporting text below as a natural lead-in to additional content.
+                    </p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

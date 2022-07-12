@@ -1,0 +1,40 @@
+{# Load the tag library #}
+{% load static %}
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Grease Monkey</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        {# Load CSS and JavaScript #}
+        {% bootstrap_css %}
+        {# Display django.contrib.messages as Bootstrap alerts #}
+        {% bootstrap_messages %}
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet"
+              type="text/css"
+              href="{% static '/css/colors.css' %}"/>
+        <link rel="stylesheet"
+              type="text/css"
+              href="{% static '/css/sidebar.css' %}"/>
+        {% block extra_head %}
+        {% endblock extra_head %}
+    </head>
+    <body class="bg-light">
+        <main>
+            <div class="d-flex w-100">
+                <div class="flex-column pt-2 flex-shrink-0 text-white bg-dark">{% include 'sidebar.html' %}</div>
+                <div class="flex-column pt-2 flex-grow-1">
+                    <div class="container-fluid">
+                        {% block content %}
+                        {% endblock content %}
+                    </div>
+                </div>
+            </div>
+        </main>
+        {% bootstrap_javascript %}
+    </body>
+</html>

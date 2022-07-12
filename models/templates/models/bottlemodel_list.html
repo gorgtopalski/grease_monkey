@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <h3>Modelos</h3>
+        </div>
+        <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+            <input id="buscarModelos"
+                   class="form-control"
+                   type="text"
+                   placeholder="Buscar.."/>
+        </div>
+        <div class="text-end">
+            <a href="{% url "models:model-add" %} "
+               type="button"
+               class="btn btn-outline-primary">Nuevo modelo</a>
+        </div>
+    </div>
+    <hr/>
+    <div class="list-group" id="listaModelos">
+        {% for model in object_list %}
+            <a href="{% url "models:model-show" model.id %}"
+               class="list-group-item list-group-item-action"><span class="badge bg-secondary">{{ model.blueprint }}</span> {{ model.name }}</a>
+        {% endfor %}
+    </div>
+    <script>
+        $(document).ready(function(){
+          $("#buscarModelos").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#listaModelos a").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+    </script>
+{% endblock content %}

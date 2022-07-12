@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% block content %}
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <h3>Nueva producción</h3>
+        </div>
+    </div>
+    <hr/>
+    {# Display a form #}
+    <form method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <br/>
+        <div class="d-flex flex-row justify-content-end">
+            <button type="submit" class="btn btn-success" name="_save">Guardar</button>
+        </div>
+    {% endbuttons %}
+</form>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load line_colors %}
+{% load template_json %}
+{% block content %}
+  <h3>Cambio de fabricación</h3>
+  <hr/>
+  <p >Seleccione la fabricación saliente:</p>
+  <p class="text-muted small">Una vez confirmada la operación, la fabricación quedará cerrada y no se podran añadir nuevos datos a esta!</p>
+  <div class="list-group" id="listaModelos">
+    {% for production in object_list %}
+      <button class="list-group-item list-group-item-action" onclick=myFunction([{{ production.line.id }},{{ production.id }}])>
+        <span class="badge {{ production.line|line_color }}">{{ production.line }}</span> [{{ production.model.blueprint }}] {{ production.model.name }}
+      </button>
+    {% endfor %}
+  </div>
+  <script>
+        function myFunction(e) {
+          URL = "{% url "models:production-add" 0 %}"+`${e[0]}/${e[1]}`
+          console.log(e)
+          var dialog = confirm("Esta seguro que desea proceder con el cambio de fabricación?");
+          if (dialog) {
+              window.location.replace(URL); 
+          }
+          else {
+              console.log('Data Not Saved')
+          }
+
+          
+          //document.getElementById("demo").innerHTML = "Hello Dear Visitor!</br> We are happy that you've chosen our website to learn programming languages. We're sure you'll become one of the best programmers in your country. Good luck to you!";
+        }
+
+
+        $(document).ready(function(){
+          $("#buscarModelos").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#listaModelos a").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+  </script>
+{% endblock content %}

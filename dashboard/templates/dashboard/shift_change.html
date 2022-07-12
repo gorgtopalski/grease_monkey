@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% block content %}
+    <h3>Cambio de turno</h3>
+    <hr/>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <br/>
+            <div class="d-flex flex-row justify-content-end">
+                <button type="submit" class="btn btn-success" name="_save">Guardar</button>
+            </div>
+        {% endbuttons %}
+    </form>
+{% endblock content %}
