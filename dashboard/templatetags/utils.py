@@ -4,8 +4,10 @@ register = template.Library()
 
 @register.filter('get_value_from_dict')
 def get_value_from_dict(dict_data, key):
-    """
-    usage example {{ your_dict|get_value_from_dict:your_key }}
-    """
     if key:
         return dict_data.get(key)
+
+@register.filter('get_value_from_model')
+def get_value_from_dict(model, key):
+    if key:
+        return model.key

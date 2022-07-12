@@ -2,6 +2,7 @@
 {% load line_colors %}
 {% load utils %}
 {% block content %}
+    {% if working_shift %}
     <div class="d-flex flex-row justify-content-start">
         <div class="col-auto p-1">
             <div class="input-group">
@@ -11,7 +12,7 @@
                 <input type="text"
                        class="form-control"
                        disabled
-                       value="{{ data|get_value_from_dict:'specialist_vc1' }}"/>
+                       value="{{ working_shift.specialist_vc1 }}"/>
             </div>
         </div>
         <div class="col-auto p-1">
@@ -22,7 +23,7 @@
                 <input type="text"
                        class="form-control"
                        disabled
-                       value="{{ data|get_value_from_dict:'specialist_vc2' }}"/>
+                       value="{{ working_shift.specialist_vc2 }}"/>
             </div>
         </div>
         <div class="col-2 p-1">
@@ -33,7 +34,7 @@
                 <input type="text"
                        class="form-control"
                        disabled
-                       value="{{ data|get_value_from_dict:'shift' }}"/>
+                       value="{{ working_shift.shift }}"/>
             </div>
         </div>
         <div class="col-1 p-1">
@@ -44,7 +45,7 @@
                 <input type="text"
                        class="form-control"
                        disabled
-                       value="{{ data|get_value_from_dict:'team' }}"/>
+                       value="{{ working_shift.team }}"/>
             </div>
         </div>
         <div class="col-2 p-1">
@@ -55,10 +56,22 @@
                 <input type="text"
                        class="form-control"
                        disabled
-                       value="{{ data|get_value_from_dict:'date' }}"/>
+                       value="{{ working_shift.date }}"/>
+            </div>
+        </div>
+        <div class="col-1 p-1">
+            <div class="input-group">
+                <div class="input-group-text">
+                    <i class="bi bi-key"></i>
+                </div>
+                <input type="text"
+                       class="form-control"
+                       disabled
+                       value="{{ working_shift.id }}"/>
             </div>
         </div>
     </div>
+    {% endif %}
     <br/>
     <div class="d-flex flex-row justify-content-evenly">
         {% for production in object_list %}

@@ -1,8 +1,9 @@
 {% url 'models:model-list' as models_url %}
 {% url 'models:production-list' as productions_url %}
 {% url 'models:production-job-change' as production_job_change_url %}
-{% url 'dashboard:shift-change' as shift_change_url %}
+{% url 'working:shift-change' as shift_change_url %}
 {% url 'dashboard:home' as home_url %}
+
 <a href="{% url "dashboard:home" %}" class="btn btn-dark form-control">Grease Monkey</a>
 <hr/>
 <ul class="nav nav-pills flex-column">

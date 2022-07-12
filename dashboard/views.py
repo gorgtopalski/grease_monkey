@@ -7,12 +7,22 @@ from dashboard.forms import ShiftChangeForm
 from models.models import Production
 from django.contrib.auth.models import User
 
+from working_shift.models import WorkingShift
+
 # Create your views here.
 
 class DashboardView(ListView):
     model = Production
     fields = '__all__'
     template_name = 'dashboard/home.html'
+
+    def get_working_shift(self):
+        pk = self.request.session.get('working_shift_id', 0)
+        if pk != 0:
+            return WorkingShift.objects.get(pk=pk)
+        else:
+            return None
+
 
     def translate_session(self):
         data = {}
@@ -49,7 +59,7 @@ class DashboardView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['data'] = self.translate_session()
+        context['working_shift'] = self.get_working_shift()
         
         return context
 
