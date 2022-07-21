@@ -9,6 +9,7 @@ from django.urls import reverse
 class BottleModel(models.Model):
     name = models.CharField('modelo', max_length=200)
     blueprint = models.CharField('plano maqueta', max_length=100, unique=True)
+    short_name = models.CharField('nombre corto', max_length=100, null=True, blank=True)
 
     class Meta:
         ordering = ["blueprint"]
