@@ -67,20 +67,27 @@ class ProductionCreateView(CreateView):
     def get_initial(self):
         initial = super().get_initial()
 
-        if (self.kwargs['production'] != 0):
-            production = get_object_or_404(Production, pk=self.kwargs['production'])
-            production.end_date = date.today()
-            production.finished = True
-            production.save()
-            initial['color'] = production.color.id
+        if 'production' in self.kwargs:
+            key = self.kwargs['production']
+            if (key != 0):
+                production = get_object_or_404(Production, pk = key)
+                production.end_date = date.today()
+                production.finished = True
+                production.save()
+                initial['color'] = production.color.id
 
-        if (self.kwargs['model'] != 0):
-            model = get_object_or_404(BottleModel, pk=self.kwargs['model'])
-            initial['model'] = model.id
+        if 'model' in self.kwargs:
+            key = self.kwargs['model']
+            if (key != 0):
+                model = get_object_or_404(BottleModel, pk = key)
+                initial['model'] = model.id
 
-        if (self.kwargs['line'] !=0):
-            line = get_object_or_404(Line, pk=self.kwargs['line'])
-            initial['line'] = line.id
+
+        if 'line' in self.kwargs:
+            key = self.kwargs['line']
+            if (key != 0):
+                line = get_object_or_404(Line, pk = key)
+                initial['line'] = line.id
             
         initial['start_date'] = date.today()
         return initial
