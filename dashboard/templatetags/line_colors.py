@@ -1,3 +1,4 @@
+from math import prod
 from django import template
 from django.template.defaultfilters import stringfilter
 
@@ -26,3 +27,18 @@ def line_color(value):
         bg_color = 'bg-l14'
     
     return bg_color
+
+
+@register.filter(name="production_name")
+def line_color(production):
+    if production:
+        line = production.line
+        if production.model.short_name == None:
+            name = production.model.name
+        else:
+            name = production.model.short_name
+
+        return str(line) + ": " + name
+
+    
+    

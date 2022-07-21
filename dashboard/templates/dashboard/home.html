@@ -12,7 +12,7 @@
                 <input type="text"
                        class="form-control"
                        disabled
-                       value="{{ working_shift.specialist_vc1 }}"/>
+                       value="{{ working_shift.specialist_vc1|get_fullname }}"/>
             </div>
         </div>
         <div class="col-auto p-1">
@@ -23,10 +23,10 @@
                 <input type="text"
                        class="form-control"
                        disabled
-                       value="{{ working_shift.specialist_vc2 }}"/>
+                       value="{{ working_shift.specialist_vc2|get_fullname }}"/>
             </div>
         </div>
-        <div class="col-2 p-1">
+        <div class="col-1 p-1">
             <div class="input-group">
                 <div class="input-group-text">
                     <i class="bi bi-clock-history"></i>
@@ -34,7 +34,7 @@
                 <input type="text"
                        class="form-control"
                        disabled
-                       value="{{ working_shift.shift }}"/>
+                       value="{{ working_shift.shift|short_shift }}"/>
             </div>
         </div>
         <div class="col-1 p-1">
@@ -56,10 +56,10 @@
                 <input type="text"
                        class="form-control"
                        disabled
-                       value="{{ working_shift.date }}"/>
+                       value="{{ working_shift.date|date:"d/m/y" }}"/>
             </div>
         </div>
-        <div class="col-1 p-1">
+        <div class="col-2 p-1">
             <div class="input-group">
                 <div class="input-group-text">
                     <i class="bi bi-key"></i>
@@ -77,7 +77,7 @@
         {% for production in object_list %}
             <div class="card m-1">
                 <div class="card-header text-nowrap text-white {{ production.line|line_color }}">
-                    <h5>{{ production.line }}: {{ production.model.name }}</h5>
+                    <h5>{{ production|production_name }}</h5>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>

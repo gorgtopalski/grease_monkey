@@ -11,3 +11,18 @@ def get_value_from_dict(dict_data, key):
 def get_value_from_dict(model, key):
     if key:
         return model.key
+
+@register.filter('short_shift')
+def short_shift(str):
+    if str:
+        if str == 'Mañana':
+            return 'M'
+        elif str == 'Tarde':
+            return 'T'
+        else:
+            return 'N'
+
+@register.filter('get_fullname')
+def get_fullname(usr):
+    if usr:
+        return usr.get_full_name()
