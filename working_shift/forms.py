@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from django import forms
 
 from context import models
@@ -24,4 +24,4 @@ class ShiftChangeForm(forms.ModelForm):
     specialist_vc2 = UserModelChoiceField(users, required=False, label='Especialista VC')
     team = forms.ModelChoiceField(models.Team.objects.all(), required=True, label='Equipo') 
     shift = forms.ModelChoiceField(models.Shift.objects.all(), required=True, label='Turno')  
-    date = forms.DateField(required=True, label='Fecha', widget=DateInput, initial=date.today())
+    date = forms.DateField(required=True, label='Fecha', widget=DateInput, initial=str(date.today()))
