@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load line_colors %}
+{% block content %}
+    <h3>Control transporte</h3>
+    {{ form.convoyer_l11a.id_for_label }}
+    <hr/>
+    <form method="post">
+        {% csrf_token %}
+        <div class="d-flex flex-row">
+            <div class="col-auto p-1">
+                {% bootstrap_field form.date show_label="skip" addon_before='<i class="bi bi-clock-history"></i>' %}
+            </div>
+            <div class="col-2 p-1">
+                {% bootstrap_field form.working_shift show_label="skip" addon_before='<i class="bi bi-key"></i>' %}
+            </div>
+            <div class="col-auto p-1 ms-auto">
+                <div class="btn-group">
+                    <button type="button"
+                            onclick="setAllToKO()"
+                            class="btn btn-danger"
+                            name="_ko">
+                        <i class="bi bi-x-square"></i>
+                    </button>
+                    <button type="button"
+                            onclick="setAllToOK()"
+                            class="btn btn-success"
+                            name="_ok">
+                        <i class="bi bi-check-all"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">L11A</th>
+                        <th scope="col">L11B</th>
+                        <th scope="col">L14</th>
+                        <th scope="col">L12A</th>
+                        <th scope="col">L12B</th>
+                        <th scope="col">L13</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Desfile</th>
+                        <td>{% bootstrap_field form.convoyer_l11a show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.convoyer_l11b show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.convoyer_l14 show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.convoyer_l12a show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.convoyer_l12b show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.convoyer_l13 show_label="skip" %}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Rueda</th>
+                        <td colspan="2">{% bootstrap_field form.wheel_l11 show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.wheel_l14 show_label="skip" %}</td>
+                        <td colspan="2">{% bootstrap_field form.wheel_l12 show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.wheel_l13 show_label="skip" %}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cross</th>
+                        <td colspan="2">{% bootstrap_field form.cross_l11 show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.cross_l14 show_label="skip" %}</td>
+                        <td colspan="2">{% bootstrap_field form.cross_l12 show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.cross_l13 show_label="skip" %}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Archa</th>
+                        <td colspan="2">
+                            {% bootstrap_field form.lehr_l11 show_label="skip" %}
+                        </td>
+                        <td>
+                            {% bootstrap_field form.lehr_l14 show_label="skip" %}
+                        </td>
+                        <td colspan="2">
+                            {% bootstrap_field form.lehr_l12 show_label="skip" %}
+                        </td>
+                        <td>
+                            {% bootstrap_field form.lehr_l13 show_label="skip" %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            {% bootstrap_field form.comments %}
+            {% bootstrap_field form.production_l11a show_label="skip" %}
+            {% bootstrap_field form.production_l11b show_label="skip" %}
+            {% bootstrap_field form.production_l14 show_label="skip" %}
+            {% bootstrap_field form.production_l12 show_label="skip" %}
+            {% bootstrap_field form.production_l13 show_label="skip" %}
+        </div>
+        <br/>
+        <div class="d-flex flex-row justify-content-end">
+            {% buttons %}
+            {% if update == True %}
+                <button type="submit" class="btn btn-warning" name="_save">
+                    Actualizar
+                </button>
+            {% else %}
+                <button type="submit" class="btn btn-success" name="_save">
+                    Guardar
+                </button>
+            {% endif %}
+        {% endbuttons %}
+    </div>
+</form>
+<script>
+    function setAllToOK() {
+        $("[type=radio]").removeAttr('checked');
+        $("[type=radio]").filter("[value='True']").trigger('click');
+
+    }
+
+    function setAllToKO() { 
+        $("[type=radio]").removeAttr('checked');
+        $("[type=radio]").filter("[value='False']").trigger('click');
+       
+    }
+</script>
+{% endblock content %}

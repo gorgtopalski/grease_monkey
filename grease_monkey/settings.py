@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'users.apps.UsersConfig',
     'working_shift.apps.WorkingShiftConfig',
+    'transport.apps.TransportConfig',
 ]
 
 MIDDLEWARE = [
@@ -112,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'Europe/Madrid'
 

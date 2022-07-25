@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin-site'),
     path('models/', include('models.urls')),
     path('working/', include('working_shift.urls')),
+    path('transport/', include('transport.urls')),
     path('', include('dashboard.urls'))
 ]
