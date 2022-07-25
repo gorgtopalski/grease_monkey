@@ -9,3 +9,6 @@ class WorkingShift(models.Model):
     team = models.ForeignKey(Team, verbose_name='equipo', on_delete=models.RESTRICT)
     shift = models.ForeignKey(Shift, verbose_name='turno', on_delete=models.RESTRICT)
     date = models.DateField('fecha')
+
+    def __str__(self):
+        return f'[{self.id}] Eq:{self.team} Turno:{self.shift}'
