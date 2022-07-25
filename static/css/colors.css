@@ -33,3 +33,19 @@
 .bg-verallia {
     background-color: rgba(1,153,0153,1) !important;
 }
+
+.border-l11 {
+    border-color: rgba(26,153,0,0.90) !important;
+}
+
+.border-l14 {
+    border-color: rgba(255,128,0,0.90) !important;
+}
+
+.border-l12 {
+    border-color: rgba(255,213,0,0.90) !important;
+}
+
+.border-l13 {
+    border-color: rgba(25,102,255,0.90) !important;
+}
