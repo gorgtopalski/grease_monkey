@@ -4,9 +4,13 @@ from django.db import models
 
 class Line(models.Model):
     line = models.CharField(max_length=10)
+    order = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.line}'
+
+    class Meta:
+        ordering=['order']
 
 
 class Team(models.Model):
