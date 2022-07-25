@@ -3,91 +3,92 @@
 {% load utils %}
 {% block content %}
     {% if working_shift %}
-    <div class="d-flex flex-row justify-content-start">
-        <div class="col-auto p-1">
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i class="bi bi-person-circle"></i>
+        <div class="d-flex flex-row justify-content-start align-items-center">
+            <div class="col-auto p-1">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    <input type="text"
+                           class="form-control"
+                           disabled
+                           value="{{ working_shift.specialist_vc1|get_fullname }}"/>
                 </div>
-                <input type="text"
-                       class="form-control"
-                       disabled
-                       value="{{ working_shift.specialist_vc1|get_fullname }}"/>
+            </div>
+            <div class="col-auto p-1">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    <input type="text"
+                           class="form-control"
+                           disabled
+                           value="{{ working_shift.specialist_vc2|get_fullname }}"/>
+                </div>
+            </div>
+            <div class="col-1 p-1">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+                    <input type="text"
+                           class="form-control"
+                           disabled
+                           value="{{ working_shift.shift|short_shift }}"/>
+                </div>
+            </div>
+            <div class="col-1 p-1">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <input type="text"
+                           class="form-control"
+                           disabled
+                           value="{{ working_shift.team }}"/>
+                </div>
+            </div>
+            <div class="col-2 p-1">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="bi bi-calendar3"></i>
+                    </div>
+                    <input type="text"
+                           class="form-control"
+                           disabled
+                           value="{{ working_shift.date|date:"d/m/y" }}"/>
+                </div>
+            </div>
+            <div class="col-2 p-1">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <i class="bi bi-key"></i>
+                    </div>
+                    <input type="text"
+                           class="form-control"
+                           disabled
+                           value="{{ working_shift.id }}"/>
+                </div>
             </div>
         </div>
-        <div class="col-auto p-1">
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i class="bi bi-person-circle"></i>
+    {% else %}
+        <div class="d-flex flex-row justify-content-start align-items-center border border-danger">
+            <div class="col-12 p-1">
+                <div class="row m-1">
+                    <a href="{% url "working:shift-change" %}" class="btn btn-danger">¡Iniciar turno!</a>
                 </div>
-                <input type="text"
-                       class="form-control"
-                       disabled
-                       value="{{ working_shift.specialist_vc2|get_fullname }}"/>
             </div>
         </div>
-        <div class="col-1 p-1">
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i class="bi bi-clock-history"></i>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       disabled
-                       value="{{ working_shift.shift|short_shift }}"/>
-            </div>
-        </div>
-        <div class="col-1 p-1">
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i class="bi bi-people"></i>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       disabled
-                       value="{{ working_shift.team }}"/>
-            </div>
-        </div>
-        <div class="col-2 p-1">
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i class="bi bi-calendar3"></i>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       disabled
-                       value="{{ working_shift.date|date:"d/m/y" }}"/>
-            </div>
-        </div>
-        <div class="col-2 p-1">
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i class="bi bi-key"></i>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       disabled
-                       value="{{ working_shift.id }}"/>
-            </div>
-        </div>
-    </div>
     {% endif %}
-    <br/>
-    <div class="d-flex flex-row justify-content-evenly">
-        {% for production in object_list %}
-            <div class="card m-1">
-                <div class="card-header text-nowrap text-white {{ production.line|line_color }}">
-                    <h5>{{ production|production_name }}</h5>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">
-                        With supporting text below as a natural lead-in to additional content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        {% endfor %}
+    <hr/>
+    <label for="productions" class="form-label">Modelos:</label>
+    <div id="productions" class="d-flex flex-column justify-content-evenly">
+        <ul class="list-group">
+            {% for production in object_list %}
+                <li class="list-group-item">
+                    <span class="badge w-5 {{ production.line|line_color }}">{{ production.line }}</span> {{ production.model }}
+                </li>
+            {% endfor %}
+        </ul>
     </div>
-{% endblock content %}
+{% endblock content %}∫
