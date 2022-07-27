@@ -23,6 +23,7 @@ class Team(models.Model):
 class Shift(models.Model):
     shift = models.IntegerField()
     shift_name = models.CharField(max_length=10)
+    short_name = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self):
         return f'{self.shift_name}'

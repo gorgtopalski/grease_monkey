@@ -19,8 +19,10 @@ def short_shift(str):
             return 'M'
         elif str == 'Tarde':
             return 'T'
-        else:
+        elif str == 'Noche':
             return 'N'
+        else:
+            return ''
 
 @register.filter('get_fullname')
 def get_fullname(usr):

@@ -34,7 +34,7 @@
                     <input type="text"
                            class="form-control"
                            disabled
-                           value="{{ working_shift.shift|short_shift }}"/>
+                           value="{{ working_shift.shift.short_name }}"/>
                 </div>
             </div>
             <div class="col-1 p-1">
@@ -85,8 +85,11 @@
     <div id="productions" class="d-flex flex-column justify-content-evenly">
         <ul class="list-group">
             {% for production in object_list %}
-                <li class="list-group-item">
-                    <span class="badge w-5 {{ production.line|line_color }}">{{ production.line }}</span> {{ production.model }}
+                <li class="list-group-item d-flex justify-content-start align-items-center">
+                        <span class="badge w-5 {{ production.line|line_color }}">{{ production.line }}</span> {{ production.model }}
+                        <div class="btn-group ms-auto">
+                            <a href="{% url "rules:rules-update" production.id %}" class="btn btn-secondary btn-sm"><i class="bi bi-ui-checks"></i></a>
+                        </div>    
                 </li>
             {% endfor %}
         </ul>
