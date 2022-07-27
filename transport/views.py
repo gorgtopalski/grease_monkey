@@ -11,6 +11,8 @@ from transport.models import TransportControl
 
 def tranport_control(request):
 
+
+    #TODO: cleanup!!!
     def get_productions():
         active = Production.objects.filter(finished=False).all()
         lines = Line.objects.all()

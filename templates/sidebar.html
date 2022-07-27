@@ -4,6 +4,7 @@
 {% url 'working:shift-change' as shift_change_url %}
 {% url 'dashboard:home' as home_url %}
 {% url 'transport:control' as transport_url %}
+{% url 'rules:rules-list' as rules_url %}
 
 <a href="{% url "dashboard:home" %}" class="btn btn-dark form-control">Grease Monkey</a>
 <hr/>
@@ -80,6 +81,13 @@
            class="nav-link text-white {% if request.path == shift_change_url %} active{% endif %}">
             <i class="bi bi-people"></i>
         Cambio turno</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ rules_url }}"
+           class="nav-link text-white {% if request.path == rules_url %} active{% endif %}">
+           <i class="bi bi-ui-checks"></i>
+            Consignas
+        </a>
     </li>
     <li class="nav-item">
         <a href="{{ productions_all_url }}"

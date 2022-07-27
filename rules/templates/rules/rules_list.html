@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+    <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <h3>Consignas</h3>
+    </div>
+    <div class="text-end">
+      <a href="{% url "rules:rules-select" %} "
+         type="button"
+         class="btn btn-outline-primary">Nuevas consignas</a>
+    </div>
+  </div>
+  <hr/>
+  <div class="list-group" id="ruleList">
+    <div class="container">
+      {% for rule in object_list %}
+        <div class="row">
+          <h4>{{ rule.production }}</h4>
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Longitud Gota</th>
+                <th scope="col">Tª Media</th>
+                <th scope="col">Tª Preparador</th>
+                <th scope="col">Tª Terminador</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">OBJ</th>
+                <td>{{ rule.gob }}</td>
+                <td>{{ rule.feeder }}</td>
+                <td>{{ rule.blank_side }}</td>
+                <td>{{ rule.finish_side }}</td>
+              </tr>
+              <tr>
+                <th scope="row">+</th>
+                <td>{{ rule.gob_max }}</td>
+                <td>{{ rule.feeder_max }}</td>
+                <td>{{ rule.blank_side_max }}</td>
+                <td>{{ rule.finish_side_max }}</td>
+              </tr>
+              <tr>
+                <th scope="row">-</th>
+                <td>{{ rule.gob_min }}</td>
+                <td>{{ rule.feeder_min }}</td>
+                <td>{{ rule.blank_side_min }}</td>
+                <td>{{ rule.finish_side_min }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

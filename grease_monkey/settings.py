@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'working_shift.apps.WorkingShiftConfig',
     'transport.apps.TransportConfig',
+    'rules.apps.RulesConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% block content %}
+    <h3>Consignas producción</h3>
+    <hr/>
+    {# Display a form #}
+    <form method="post" class="form">
+        {% csrf_token %}
+        <div class="table-responsive">
+            <table class="table table-sm align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Longitud</th>
+                        <th scope="col">Tª Media</th>
+                        <th scope="col">Tª Preparador</th>
+                        <th scope="col">Tª Terminador</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <th scope="row" class="align-middle">Consigna</th>
+                        <td>{% bootstrap_field form.gob show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.feeder show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.blank_side show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.finish_side show_label="skip" %}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle">+</th>
+                        <td>{% bootstrap_field form.gob_max show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.feeder_max show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.blank_side_max show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.finish_side_max show_label="skip" %}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle">-</th>
+                        <td>{% bootstrap_field form.gob_min show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.feeder_min show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.blank_side_min show_label="skip" %}</td>
+                        <td>{% bootstrap_field form.finish_side_min show_label="skip" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% bootstrap_field form.production show_label="skip" %}
+        {% buttons %}
+        <br/>
+        <div class="d-flex flex-row justify-content-end">
+            <button type="submit" class="btn btn-success" name="_save">Guardar</button>
+        </div>
+    {% endbuttons %}
+</form>
+{% endblock content %}

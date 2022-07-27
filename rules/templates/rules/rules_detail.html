@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ">
+        <div class="col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <h3>[{{ object.blueprint }}] {{ object.name }}</h3>
+        </div>
+        <div class="text-end">
+            <a href="{% url "models:model-update" object.id %} " type="button" class="btn btn-outline-secondary">Editar</a>
+            <a href="{% url "models:production-add" object.id %} " type="button" class="btn btn-outline-primary">Nueva producción</a>
+        </div>
+    </div>
+    <hr/>
+    <h3>Histórico producciones</h3>
+
+{% endblock content %}
