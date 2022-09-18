@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load line_colors %}
+{% block content %}
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <h3>Control transporte</h3>
+        </div>
+        <div class="text-end">
+            <a href="{% url "transport:control-list" %} "
+               type="button"
+               class="btn btn-primary"><i class="bi bi-arrow-left-square"></i></a>
+        </div>
+    </div>
+    <hr/>
+    <div class="d-flex flex-row">
+        <div class="col-auto p-1">{{ object.date }}</div>
+        <div class="col-2 p-1"></div>
+        <div class="col-auto p-1 ms-auto">
+            <div class="btn-group">
+                <button type="button"
+                        onclick="setAllToKO()"
+                        class="btn btn-danger"
+                        name="_ko">
+                    <i class="bi bi-x-square"></i>
+                </button>
+                <button type="button"
+                        onclick="setAllToOK()"
+                        class="btn btn-success"
+                        name="_ok">
+                    <i class="bi bi-check-all"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-sm align-middle">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">L11A</th>
+                    <th scope="col">L11B</th>
+                    <th scope="col">L14</th>
+                    <th scope="col">L12A</th>
+                    <th scope="col">L12B</th>
+                    <th scope="col">L13</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                    <th scope="row">Desfile</th>
+                    <td>{{ object.convoyer_l11a }}</td>
+                    <td>{{ object.convoyer_l11b }}</td>
+                    <td>{{ object.convoyer_l14 }}</td>
+                    <td>{{ object.convoyer_l12a }}</td>
+                    <td>{{ object.convoyer_l12b }}</td>
+                    <td>{{ object.convoyer_l13 }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Rueda</th>
+                    <td colspan="2">{{ object.wheel_l11 }}</td>
+                    <td>{{ object.wheel_l14 }}</td>
+                    <td colspan="2">{{ object.wheel_l12 }}</td>
+                    <td>{{ object.wheel_l13 }}</td>
+                </tr>
+                <tr>
+                    {% comment %} <th scope="row">Cross</th>
+                    <td colspan="2">{% bootstrap_field object.cross_l11 show_label="skip" %}</td>
+                    <td>{% bootstrap_field object.cross_l14 show_label="skip" %}</td>
+                    <td colspan="2">{% bootstrap_field object.cross_l12 show_label="skip" %}</td>
+                    <td>{% bootstrap_field object.cross_l13 show_label="skip" %}</td> {% endcomment %}
+                </tr>
+                <tr>
+                    {% comment %} <th scope="row">Archa</th>
+                    <td colspan="2">
+                        {% bootstrap_field object.lehr_l11 show_label="skip" %}
+                    </td>
+                    <td>
+                        {% bootstrap_field object.lehr_l14 show_label="skip" %}
+                    </td>
+                    <td colspan="2">
+                        {% bootstrap_field object.lehr_l12 show_label="skip" %}
+                    </td>
+                    <td>
+                    {% bootstrap_field object.lehr_l13 show_label="skip" %} {% endcomment %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% comment %} {% bootstrap_field object.comments %}
+        {% bootstrap_field object.production_l11a show_label="skip" %}
+        {% bootstrap_field object.production_l11b show_label="skip" %}
+        {% bootstrap_field object.production_l14 show_label="skip" %}
+        {% bootstrap_field object.production_l12 show_label="skip" %}
+    {% bootstrap_field object.production_l13 show_label="skip" %} {% endcomment %}
+</div>
+<br/>
+<div class="d-flex flex-row justify-content-end">
+    {% buttons %}
+    {% if update == True %}
+        <button type="submit" class="btn btn-warning" name="_save">
+            Actualizar
+        </button>
+    {% else %}
+        <button type="submit" class="btn btn-success" name="_save">
+            Guardar
+        </button>
+    {% endif %}
+{% endbuttons %}
+</div>
+{% endblock content %}

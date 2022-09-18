@@ -3,10 +3,8 @@ from django import forms
 
 from transport.models import TransportControl
 
-
 class RadioSelectGroup(forms.RadioSelect):
     template_name = 'transport/widgets/radio_select.html'
-
 
 class TransportForm(forms.ModelForm):
     class Meta:

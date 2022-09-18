@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load line_colors %}
+{% load utils %}
+{% block content %}
+    <h3>Historico transporte</h3>
+    <hr/>
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">T</th>
+                    <th scope="col">Eq</th>
+                    <th scope="col">Comentarios</th>
+                    <th scope="col">Modelo 11A</th>
+                    <th scope="col">Modelo 11B</th>
+                    <th scope="col">Desfile A</th>
+                    <th scope="col">Desfile B</th>
+                    <th scope="col">Rueda</th>
+                    <th scope="col">Cross</th>
+                    <th scope="col">Archa</th>
+                    <th scope="col">Modelo 14</th>
+                    <th scope="col">Desfile</th>
+                    <th scope="col">Rueda</th>
+                    <th scope="col">Cross</th>
+                    <th scope="col">Archa</th>
+                    <th scope="col">Modelo 12</th>
+                    <th scope="col">Desfile A</th>
+                    <th scope="col">Desfile B</th>
+                    <th scope="col">Rueda</th>
+                    <th scope="col">Cross</th>
+                    <th scope="col">Archa</th>
+                    <th scope="col">Modelo 13</th>
+                    <th scope="col">Desfile</th>
+                    <th scope="col">
+                        Rueda
+                    </th>
+                    <th scope="col">
+                        Cross
+                    </th>
+                    <th scope="col">
+                        Archa
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for control in page_obj %}
+                    {# Each "contact" is a Contact model object. #}
+                    <tr>
+                        <th scope="row">
+                            {{ control.id }}
+                        </th>
+                        <td>
+                            {{ control.date|date:"SHORT_DATETIME_FORMAT" }}
+                        </td>
+                        <td>
+                            {{ control.working_shift.shift }}
+                        </td>
+                        <td>
+                            {{ control.working_shift.team }}
+                        </td>
+                        <td>
+                            {{ control.comments }}
+                        </td>
+                        <td>
+                            {{ control.production_l11a.model }}
+                        </td>
+                        <td>
+                            {{ control.production_l11b.model }}
+                        </td>
+                        <td>
+                            {{ control.convoyer_l11a|bool }}
+                        </td>
+                        <td>
+                            {{ control.convoyer_l11b|bool }}
+                        </td>
+                        <td>
+                            {{ control.wheel_l11|bool }}
+                        </td>
+                        <td>
+                            {{ control.cross_l11|bool }}
+                        </td>
+                        <td>
+                            {{ control.lehr_l11|bool }}
+                        </td>
+                        <td>
+                            {{ control.production_l14.model }}
+                        </td>
+                        <td>
+                            {{ control.convoyer_l14|bool }}
+                        </td>
+                        <td>
+                            {{ control.wheel_l14|bool }}
+                        </td>
+                        <td>
+                            {{ control.cross_l14|bool }}
+                        </td>
+                        <td>
+                            {{ control.lehr_l14|bool }}
+                        </td>
+                        <td>
+                            {{ control.production_l12.model }}
+                        </td>
+                        <td>
+                            {{ control.convoyer_l12a|bool }}
+                        </td>
+                        <td>
+                            {{ control.convoyer_l12b|bool }}
+                        </td>
+                        <td>
+                            {{ control.wheel_l12|bool }}
+                        </td>
+                        <td>
+                            {{ control.cross_l12|bool }}
+                        </td>
+                        <td>
+                            {{ control.lehr_l12|bool }}
+                        </td>
+                        <td>
+                            {{ control.production_l13.model }}
+                        </td>
+                        <td>
+                            {{ control.convoyer_l13|bool }}
+                        </td>
+                        <td>
+                            {{ control.wheel_l13|bool }}
+                        </td>
+                        <td>
+                            {{ control.cross_l13|bool }}
+                        </td>
+                        <td>
+                            {{ control.lehr_l13|bool }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        <div class="btn-toolbar"
+             role="toolbar"
+             aria-label="Toolbar with button groups">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                        <a class="btn btn-outline-primary" href="?page=1"><i class="bi bi-skip-start"></i></a>
+                        <a class="btn btn-outline-primary"
+                           href="?page={{ page_obj.previous_page_number }}"><i class="bi bi-skip-backward"></i></a>
+                    </div>
+                {% endif %}
+                <div class="btn-group me-2" role="group" aria-label="First group">
+                    <span class="current">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+                </div>
+                {% if page_obj.has_next %}
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                        <a class="btn btn-outline-primary"
+                           href="?page={{ page_obj.next_page_number }}"><i class="bi bi-skip-forward"></i></a>
+                        <a class="btn btn-outline-primary"
+                           href="?page={{ page_obj.paginator.num_pages }}"><i class="bi bi-skip-end"></i></a>
+                    </div>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+{% endblock content %}

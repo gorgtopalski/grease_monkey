@@ -2,8 +2,17 @@
 {% load bootstrap5 %}
 {% load line_colors %}
 {% block content %}
-    <h3>Control transporte</h3>
-    {{ form.convoyer_l11a.id_for_label }}
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <h3>Control transporte</h3>
+        </div>
+        <div class="text-end">
+            <a href="{% url "transport:control-list" %}"
+               type="button"
+               class="btn btn-primary"><i class="bi bi-calendar-date"></i> 
+               Ver Historico</a>
+        </div>
+    </div>
     <hr/>
     <form method="post">
         {% csrf_token %}
@@ -66,10 +75,14 @@
                         <td colspan="2">{% bootstrap_field form.cross_l11 show_label="skip" %}</td>
                         <td>{% bootstrap_field form.cross_l14 show_label="skip" %}</td>
                         <td colspan="2">{% bootstrap_field form.cross_l12 show_label="skip" %}</td>
-                        <td>{% bootstrap_field form.cross_l13 show_label="skip" %}</td>
+                        <td>
+                            {% bootstrap_field form.cross_l13 show_label="skip" %}
+                        </td>
                     </tr>
                     <tr>
-                        <th scope="row">Archa</th>
+                        <th scope="row">
+                            Archa
+                        </th>
                         <td colspan="2">
                             {% bootstrap_field form.lehr_l11 show_label="skip" %}
                         </td>
