@@ -1,6 +1,7 @@
 from math import prod
 from django import template
 from django.template.defaultfilters import stringfilter
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -41,4 +42,13 @@ def line_color(production):
         return str(line) + ": " + name
 
     
-    
+@register.filter(name="bool")
+def bool(value):
+    str = ''
+    if (value is True):
+        str = '<i class="bi bi-check-circle text-success"></i>'
+    elif value is False:
+        str = '<i class="bi bi-x-square text-danger"></i>'
+    else:
+        str = '-'
+    return mark_safe(str)
