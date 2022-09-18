@@ -116,9 +116,15 @@
         Modelos</a>
     </li>
     <li class="nav-item">
+        <a href="{{ q }}"
+           class="nav-link text-white {% if request.path == q %} active{% endif %}">
+           <i class="bi bi-archive"></i>
+        Historico</a>
+    </li>
+    <li class="nav-item">
         <a href="/admin"
            class="nav-link text-white {% if request.path == admin_site_url %} active{% endif %}">
-            <i class="bi bi-folder"></i>
+           <i class="bi bi-person-workspace"></i>
         Admin</a>
     </li>
 </ul>
