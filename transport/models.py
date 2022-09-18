@@ -1,5 +1,6 @@
 from operator import truediv
 from django.db import models
+from django.urls import reverse
 
 from models.models import Production
 from working_shift.models import WorkingShift
@@ -38,3 +39,6 @@ class TransportControl(models.Model):
     cross_l13 = models.BooleanField('cross convoyer', default=None, blank=True, null=True, choices=CHOICE)
     lehr_l13 = models.BooleanField('puesta en archa', default=None, blank=True, null=True, choices=CHOICE)
     production_l13 = models.ForeignKey(Production, on_delete=models.RESTRICT, verbose_name='producción L13', related_name='prod_l13')
+
+    def get_absolute_url(self):
+        return reverse("transport:control-show", kwargs={"pk": self.pk})
